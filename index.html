@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <link rel="stylesheet" href="nav.css">  
-  <link rel="stylesheet" href="style.css"> 
-  <script defer src="nav.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Chela+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" herf="fonts.css"
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="nav.css">
+    <script defer src="nav.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    >
+  </head>
   <body>
     <nav>
       <ul class="sidebar">
-        <li onclick=hideSidebar()><a href="#"><button data-close-button class="close-button">&times;</button></a></li>
+        <li onclick="hideSidebar()">
+          <a href="#"><button class="close-button">&times;</button></a>
+        </li>
         <li><a href="intro.html">Home</a></li>
         <li><a href="effect.html">Quiz</a></li>
-        <li><a href="how.html">Jobs</a></li>
+        <li><a href="how.html">Methods</a></li>
       </ul>
 
       <ul class="main-menu">
-        <li class="logo"><img src="https://cdn.glitch.global/766c2160-655c-415c-8b70-7a9713042d75/LOGO?v=1748782078287" alt="Logo">
-        <span class="hideOnMobile">Cureer</span></li>
+        <li class="logo">
+          <img src="img/logo.webp" alt="Cureer Logo">
+          <span>Cureer</span>
+        </li>
         <li class="hideOnMobile"><a href="intro.html">Home</a></li>
         <li class="hideOnMobile"><a href="effect.html">Quiz</a></li>
-        <li class="hideOnMobile"><a href="how.html">Jobs</a></li>
-        <li class="logo"><img src="https://cdn.glitch.global/766c2160-655c-415c-8b70-7a9713042d75/LOGO?v=1748782078287" alt="Logo">
-        <li class="menu-button" onclick=showSidebar()><a href="#"><img src="https://cdn.glitch.global/766c2160-655c-415c-8b70-7a9713042d75/menu?v=1748869323510"></a></li>
+        <li class="hideOnMobile"><a href="how.html">Methods</a></li>
+        <li class="theme-toggle" onclick="toggleTheme()">
+          <img id="theme-icon" src="sun.webp" alt="Theme Icon">
+        </li>
+        <li class="menu-button" onclick="showSidebar()">
+          <a href="#"></a>
+        </li>
       </ul>
     </nav>
+
+    
   </body>
+</html>

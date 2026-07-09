@@ -82,6 +82,18 @@ nav a:hover {
   width: auto;
 }
 
+.logo .logo-dark {
+  display: none;
+}
+
+.dark-theme .logo .logo-light {
+  display: none;
+}
+
+.dark-theme .logo .logo-dark {
+  display: block;
+}
+
 .logo span {
   font-size: 36px;
   font-weight: 700;
@@ -100,11 +112,15 @@ nav a:hover {
 .theme-toggle img {
   width: 35px;
   height: 35px;
-  transition: transform 0.4s ease-in-out;
+}
+
+@keyframes fullSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .theme-toggle.flip img {
-  transform: rotate(180deg);
+  animation: fullSpin 0.4s ease-in-out;
 }
 
 .menu-button {
@@ -171,4 +187,3 @@ nav a:hover {
   }
 }
 
-```

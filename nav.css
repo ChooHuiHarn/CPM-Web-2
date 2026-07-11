@@ -37,13 +37,26 @@ body {
   color: var(--text);
   font-family: "Inter", sans-serif;
   transition: background-color 0.4s ease, color 0.4s ease;
+  padding-top: 76px;
 }
 
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   background: var(--medium-blue);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: background 0.4s ease;
+  transition: background 0.4s ease, transform 0.35s ease, opacity 0.35s ease;
 }
+
+nav.nav-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 nav ul.main-menu {
   width: 100%;
@@ -94,9 +107,11 @@ nav a:hover {
   display: block;
 }
 
-.logo span {
+nav .main-menu .logo span {
+  font-family: "Modak", system-ui;
+  font-weight: 400;
+  font-style: normal;
   font-size: 36px;
-  font-weight: 700;
   color: var(--text);
 }
 
@@ -172,6 +187,12 @@ nav a:hover {
 }
 
 @media (max-width: 800px) {
+  nav.nav-hidden {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
   .hideOnMobile {
     display: none;
   }
@@ -186,4 +207,3 @@ nav a:hover {
     width: 100%;
   }
 }
-

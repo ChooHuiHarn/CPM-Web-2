@@ -7,7 +7,7 @@
   --yellow: #ffea29;
   --green: #03d66c;
   --vibrant-blue: #6397ff;
-  --medium-blue: #7eb0fc; 
+  --medium-blue: #7eb0fc;
   --light-blue: #9fc2fd;
   --text: #1a2376;
 }
@@ -38,7 +38,138 @@ body {
   font-family: "Atkinson Hyperlegible", sans-serif;
   transition: background-color 0.4s ease, color 0.4s ease;
   padding-top: 76px;
-  
-  background-image: linear-gradient(var(--grid) .1em, transparent .1em), linear-gradient(90deg, var(--grid) .1em, transparent .1em);
-  background-size: 3em 3em;
+
+  background-image:
+    linear-gradient(var(--grid) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, var(--grid) 0.1em, transparent 0.1em);
+  background-size: 2em 2em;
+}
+
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 440px;
+}
+
+h2.section-title {
+  font-family: "Ultra", serif;
+  font-size: 42px;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 30px;
+}
+
+.hero-section {
+  min-height: 850px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.hero-title {
+  font-family: "Ultra", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 71px;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.decorations  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  .decoration-book {
+    position: absolute;
+    width: 193px;
+    height: 205px;
+    top: 131px;
+    left: 66px;
+  }
+  .decoration-circleG {
+    position: absolute;
+    width: 76px;
+    height: 89px;
+    top: 268px;
+    left: 380px;
+  }
+  .decoration-line {
+    position: absolute;
+    width: 284px;
+    height: 296px;
+    top: 49px;
+    left: 471px;
+  }
+  .decoration-magnifyi {
+    position: absolute;
+    width:218px;
+    height: 229px;
+    top: 170px;
+    left: 783px;
+  }
+  .decoration-curveP {
+    position: absolute;
+    width:158px;
+    height:164px;
+    top: 103px;
+    left: 988px;
+  }
+  .decoration-starT {
+    position: absolute;
+    width:147px;
+    height: 153px;
+    top: 223px;
+    right: 114px;
+  }
+  .decoration-circleO {
+    position: absolute;
+    width:85px;
+    height: 89px;
+    top: 338px;
+    right: 29px;
+  }
+  .decoration-ste {
+    position: absolute;
+    width:187px;
+    height: 194px;
+    top: 491px;
+    left: 51px;
+  }
+  .decoration-curvePi {
+    position: absolute;
+    width:174px;
+    height: 182px;
+    top: 537px;
+    left: 368px;
+  }
+  .decoration-circleP {
+    position: absolute;
+    width: 76px;
+    height: 89px;
+    top: 537px;
+    left: 657px;
+  }
+  .decoration-starB {
+    position: absolute;
+    width: 147px;
+    height: 153px;
+    top: 520px;
+    right: 398px;
+    }
+  .decoration-screw {
+    position: absolute;
+    width: 218px;
+    height: 227px;
+    top: 507px;
+    right: 87px;
+  }
 }

@@ -1,1 +1,44 @@
+:root {
+  --background: #f5f5f5;
+  --grid: #eaeaff;
+  --purple: #b469ff;
+  --pink: #ff66bc;
+  --orange: #fc6b44;
+  --yellow: #ffea29;
+  --green: #03d66c;
+  --vibrant-blue: #6397ff;
+  --medium-blue: #7eb0fc; 
+  --light-blue: #9fc2fd;
+  --text: #1a2376;
+}
 
+.dark-theme {
+  --background: #0f1427;
+  --grid: #252e50;
+  --purple: #b469ff;
+  --pink: #ff66bc;
+  --orange: #fc6b44;
+  --yellow: #ffea29;
+  --green: #03d66c;
+  --vibrant-blue: #4891ff;
+  --medium-blue: #132542;
+  --light-blue: #1b3864;
+  --text: #f5f5f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  padding-top: 76px;
+  
+  background-image: linear-gradient(var(--grid) .1em, transparent .1em), linear-gradient(90deg, var(--grid) .1em, transparent .1em);
+  background-size: 3em 3em;
+}

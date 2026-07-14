@@ -174,3 +174,48 @@ h2.section-title {
     right: 107px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 1700px) {
+  .decorations .decoration-curveP {
+    width:208px;
+    height:214px;
+    top: 103px;
+    right: 700px;
+  }
+  .decorations .decoration-starT {
+    width:167px;
+    height: 173px;
+    top: 223px;
+    right: 164px;
+  }
+  .decorations .decoration-circleO {
+    width:75px;
+    height: 89px;
+    top: 338px;
+    right: 50px;
+  }
+  .decorations .decoration-starB {
+    width: 167px;
+    height: 173px;
+    top: 520px;
+    right: 508px;
+    rotate: 140deg;
+  }
+  .decorations .decoration-screw {
+    width: 248px;
+    height: 257px;
+    top: 507px;
+    right: 157px;
+  }
+}

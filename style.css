@@ -61,27 +61,6 @@ h2.section-title {
   margin-bottom: 30px;
 }
 
-@keyframes popFromCenter {
-  from {
-    transform: translate(var(--dx), var(--dy)) scale(0.15);
-    opacity: 0;
-  }
-  to {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes titlePop {
-  from {
-    transform: scale(0.2);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 
 .hero-section {
   min-height: 850px;

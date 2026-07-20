@@ -562,7 +562,6 @@ h2.section-title {
   animation: floatUpDown 3.8s ease-in-out infinite 0.4s;
 }
 
-/* Star – middle left */
 .CoStar {
   width: 105px;
   rotate: -20deg;
@@ -575,6 +574,17 @@ h2.section-title {
   width: 250px;
   bottom: 0;
   left: 50%;
+}
+.CoLogoDark {
+  display: none;
+}
+
+.dark-theme .CoLogoLight {
+  display: none;
+}
+
+.dark-theme .CoLogoDark {
+  display: block;
 }
 
 .CoLine {

@@ -253,11 +253,9 @@ body {
  
 .results-layout {
   display: grid;
- 
+  margin-top:40px; 
   grid-template-columns: 330px 1fr;
- 
   gap: 35px;
- 
   align-items: start;
 }
  

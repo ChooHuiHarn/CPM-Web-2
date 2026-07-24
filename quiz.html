@@ -6,9 +6,13 @@
     <title>Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Modak&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Modak&display=swap"
+      rel="stylesheet"
+    >
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="quiz.css">
     <script defer src="nav.js"></script>
   </head>
   <body>
@@ -38,14 +42,140 @@
 
         <li class="menu-button" onclick="showSidebar()">
           <a href="#">
-            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M4 6h16M4 12h16M4 18h16"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
           </a>
         </li>
       </ul>
     </nav>
     <main>
-      
-    </main>
+      <div class="container">
 
+        <section id="landing-page" class="page active">
+          <div class="hero">
+            <img src="images/logo.webp" class="hero-image" alt="Mascot">
+
+            <h1>Find Your Dream Career</h1>
+
+            <p>
+              Answer a few questions to discover careers that match your
+              personality.
+            </p>
+
+            <button id="start-btn">
+              Start Quiz
+            </button>
+          </div>
+        </section>
+
+
+        <section id="quiz-page" class="page">
+
+          <div class="progress-wrapper">
+            <div class="progress-bar">
+              <div id="progress"></div>
+            </div>
+
+            <p id="progress-text">
+              Question 1 / 7
+            </p>
+          </div>
+
+
+
+          <div class="question-container">
+            <h2 id="question">
+              Question appears here
+            </h2>
+          </div>
+
+
+          <div id="answers" class="answers">
+          </div>
+
+          <button id="next-btn">
+            Next
+          </button>
+        </section>
+
+
+<section id="result-page" class="page">
+
+    <div class="results-layout">
+
+
+        <aside class="personality-panel">
+
+            <h1>Your Personality</h1>
+
+            <div class="primary-personality">
+
+                <h2 id="primary-name">
+                    Artistic
+                </h2>
+
+                <p id="primary-description">
+                    Primary personality description goes here.
+                </p>
+
+            </div>
+
+            <div class="secondary-personality">
+
+                <h3>You're also a bit of:</h3>
+
+                <h2 id="secondary-name">
+                    Conventional
+                </h2>
+
+                <p id="secondary-description">
+                    Secondary personality description goes here.
+                </p>
+
+            </div>
+
+            <button id="restart-btn">
+                Retake Quiz
+            </button>
+
+        </aside>
+
+
+        <section class="jobs-panel">
+
+            <h1>Your Job Matches</h1>
+
+            <div id="top-matches">
+
+
+            </div>
+
+
+            <div class="other-jobs">
+
+                <h2>
+                    Other Careers You May Like
+                </h2>
+
+                <div id="other-jobs-list">
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+      <script src="quiz.js"></script>
+    </main>
   </body>
 </html>

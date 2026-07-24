@@ -334,7 +334,7 @@ body {
 }
  
 #restart-btn:hover {
-  background: #eef5ff;
+  color: #6397ff;;
 }
  
 /* RIGHT PANEL */
@@ -443,7 +443,7 @@ Learn More Button
 }
  
 .learn-more-btn:hover {
-  color: #4d74f7;
+  color: #6397ff;;
  
   transform: translateX(4px);
 }

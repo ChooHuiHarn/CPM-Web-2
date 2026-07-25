@@ -91,8 +91,8 @@ body {
 }
 
 .CoLogo {
-  width: 180px;
-  margin-bottom: 25px;
+  width: 500px;
+  margin-bottom: -50px;
 }
 
 /* Default (Light Mode) */
@@ -467,6 +467,9 @@ body {
 }
 
 @media (max-width: 900px) {
+.CoLogo {
+  width: 400px;
+}
   .results-layout {
     grid-template-columns: 1fr;
   }

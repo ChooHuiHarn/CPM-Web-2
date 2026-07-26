@@ -1,6 +1,23 @@
+/*====================================================
+    Career Quiz
+    Part 1
+=====================================================*/
+
+/*-------------------------------------
+Google Apps Script URL
+(Change this later)
+-------------------------------------*/
+
+// FIX: pointed at the new consolidated Apps Script (the same one
+// job.html/job.js use) instead of the old standalone deployment,
+// so there's only one backend to maintain.
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbzsb-VLM7taaypQRg39awukXG2am7MbbvKmpc3Z5VpkxJ2Yq58iN9VQ3vJsQxqo0SACCw/exec";
- 
+  "https://script.google.com/macros/s/AKfycbxQBx4JvjiaqWRjl_Uq86z-kfxSgsB4wLbRgEZOonNf6yczHxkBlSA50Zx_1lqpMKHt/exec";
+
+/*-------------------------------------
+Quiz Questions
+-------------------------------------*/
+
 const quiz = [
   {
     question: "Which do you like to do most?",
@@ -13,7 +30,7 @@ const quiz = [
       { text: "Drawing and painting", type: "A" },
     ],
   },
- 
+
   {
     question: "Which do you like to do most?",
     answers: [
@@ -25,7 +42,7 @@ const quiz = [
       { text: "Watching documentaries and science videos", type: "I" },
     ],
   },
- 
+
   {
     question: "Which do you like to do most?",
     answers: [
@@ -37,7 +54,7 @@ const quiz = [
       { text: "Exploring nature and being outdoors", type: "R" },
     ],
   },
- 
+
   {
     question: "Which do you like to do most?",
     answers: [
@@ -49,7 +66,7 @@ const quiz = [
       { text: "Conducting recipe-based cooking", type: "C" },
     ],
   },
- 
+
   {
     question: "Which do you like to do most?",
     answers: [
@@ -61,7 +78,7 @@ const quiz = [
       { text: "Playing sports or working out", type: "R" },
     ],
   },
- 
+
   {
     question: "Which do you like to do most?",
     answers: [
@@ -73,7 +90,7 @@ const quiz = [
       { text: "Conducting experiments", type: "I" },
     ],
   },
- 
+
   {
     question: "Which do you like to do most?",
     answers: [
@@ -86,27 +103,29 @@ const quiz = [
     ],
   },
 ];
- 
+
 /*-------------------------------------
 Personality Descriptions
 -------------------------------------*/
- 
+
 const descriptions = {
   R: "You enjoy practical, hands-on activities and solving real-world problems.",
- 
+
   I: "You enjoy analysing, researching, and discovering new ideas.",
- 
+
   A: "You enjoy expressing yourself through creativity and imagination.",
- 
+
   S: "You enjoy helping, teaching, and working with other people.",
- 
+
   E: "You enjoy leading, persuading, and managing people or projects.",
- 
+
   C: "You enjoy organising, planning, and working with structure.",
 };
- 
-/* Score Object */
- 
+
+/*-------------------------------------
+Score Object
+-------------------------------------*/
+
 let scores = {
   R: 0,
   I: 0,
@@ -115,154 +134,186 @@ let scores = {
   E: 0,
   C: 0,
 };
+
+/*-------------------------------------
+Variables
+-------------------------------------*/
+
 let currentQuestion = 0;
 let selectedAnswer = null;
- 
-/* Elements */
- 
+
+/*-------------------------------------
+HTML Elements
+-------------------------------------*/
+
 const landingPage = document.getElementById("landing-page");
 const quizPage = document.getElementById("quiz-page");
 const resultPage = document.getElementById("result-page");
- 
+
 const startBtn = document.getElementById("start-btn");
 const nextBtn = document.getElementById("next-btn");
 const restartBtn = document.getElementById("restart-btn");
- 
+
 const question = document.getElementById("question");
 const answers = document.getElementById("answers");
- 
+
 const progress = document.getElementById("progress");
 const progressText = document.getElementById("progress-text");
- 
+
 const primaryName = document.getElementById("primary-name");
- 
+
 const secondaryName = document.getElementById("secondary-name");
- 
+
 const primaryDescription = document.getElementById("primary-description");
- 
+
 const secondaryDescription = document.getElementById("secondary-description");
- 
+
 const topMatches = document.getElementById("top-matches");
- 
+
 const otherJobsList = document.getElementById("other-jobs-list");
- 
-/* Quiz*/
- 
+
+/*-------------------------------------
+Start Quiz
+-------------------------------------*/
+
 startBtn.addEventListener("click", () => {
   landingPage.classList.remove("active");
   quizPage.classList.add("active");
- 
+
   loadQuestion();
 });
- 
-/* Load Question */
- 
+
+/*-------------------------------------
+Load Question
+-------------------------------------*/
+
 function loadQuestion() {
   selectedAnswer = null;
- 
+
   question.textContent = quiz[currentQuestion].question;
- 
+
   answers.innerHTML = "";
- 
+
   quiz[currentQuestion].answers.forEach((answer) => {
     const button = document.createElement("button");
- 
+
     button.classList.add("answer-btn");
- 
+
     button.textContent = answer.text;
- 
+
     button.addEventListener("click", () => {
       document.querySelectorAll(".answer-btn").forEach((btn) => {
         btn.classList.remove("selected");
       });
- 
+
       button.classList.add("selected");
- 
+
       selectedAnswer = answer.type;
     });
- 
+
     answers.appendChild(button);
   });
- 
+
   updateProgress();
 }
- 
-/* Progress Bar */
- 
+
+/*-------------------------------------
+Progress Bar
+-------------------------------------*/
+
 function updateProgress() {
   const percentage = ((currentQuestion + 1) / quiz.length) * 100;
- 
+
   progress.style.width = percentage + "%";
- 
+
   progressText.textContent = `Question ${currentQuestion + 1} / ${quiz.length}`;
 }
- 
 
-/* Next Button */
- 
+/*====================================================
+    Career Quiz
+    Part 2
+=====================================================*/
+
+/*-------------------------------------
+Next Button
+-------------------------------------*/
+
 nextBtn.addEventListener("click", () => {
+  // Make sure an answer is selected
   if (selectedAnswer === null) {
     alert("Please select an answer before continuing.");
- 
+
     return;
   }
+
+  // Add point to selected personality
   scores[selectedAnswer]++;
 
+  // Next question
   currentQuestion++;
- 
+
+  // More questions remaining
   if (currentQuestion < quiz.length) {
     loadQuestion();
-  } 
+  } // Quiz finished
   else {
     showResults();
   }
 });
- 
-/* Show Results */
- 
+
+/*-------------------------------------
+Show Results
+-------------------------------------*/
+
 function showResults() {
   quizPage.classList.remove("active");
   resultPage.classList.add("active");
- 
+
   const ranking = Object.entries(scores)
     .sort((a, b) => b[1] - a[1]);
- 
+
   const primary = ranking[0][0];
   const secondary = ranking[1][0];
- 
+
   loadCareerResults(primary, secondary);
 }
-  
+
+/*-------------------------------------
+Convert Letter To Name
+-------------------------------------*/
+
 function personalityNames(letter) {
   switch (letter) {
     case "R":
       return "Realistic";
- 
+
     case "I":
       return "Investigative";
- 
+
     case "A":
       return "Artistic";
- 
+
     case "S":
       return "Social";
- 
+
     case "E":
       return "Enterprising";
- 
+
     case "C":
       return "Conventional";
- 
+
     default:
       return "";
   }
 }
- 
-/* Reset */
- 
+
+/*-------------------------------------
+Reset Quiz
+-------------------------------------*/
+
 restartBtn.addEventListener("click", () => {
   localStorage.removeItem("careerResults");
- 
+
   scores = {
     R: 0,
     I: 0,
@@ -271,54 +322,56 @@ restartBtn.addEventListener("click", () => {
     E: 0,
     C: 0,
   };
- 
+
   currentQuestion = 0;
   selectedAnswer = null;
- 
+
   resultPage.classList.remove("active");
   quizPage.classList.remove("active");
   landingPage.classList.add("active");
 });
-/* Career Results */
+/*====================================================
+    Career Results
+=====================================================*/
 function renderResults(data) {
   primaryName.textContent = personalityNames(data.primary);
- 
+
   secondaryName.textContent = personalityNames(data.secondary);
- 
+
   primaryDescription.textContent = data.primaryDescription;
   secondaryDescription.textContent = data.secondaryDescription;
- 
+
   topMatches.innerHTML = "";
- 
+
   otherJobsList.innerHTML = "";
- 
+
   displayTopMatches(data.topMatches);
- 
+
   displayOtherJobs(data.otherJobs);
- 
+
   const heading = document.querySelector(".other-jobs h2");
- 
+
   heading.textContent = `Other ${personalityNames(data.primary)} Careers`;
 }
- 
+
 function displayTopMatches(jobs) {
   topMatches.innerHTML = "";
- 
+
   jobs.forEach((job, index) => {
     const card = document.createElement("div");
- 
+
     card.className = "career-card top-match";
- 
+
     card.innerHTML = `
- 
+
             <div class="career-info">
- 
+
                 <h3>${job.title}</h3>
- 
+
                 <p>${job.description}</p>
- 
+
                 <span class="badge">
- 
+
                   ${
       index === 0
         ? "Top Match"
@@ -326,120 +379,122 @@ function displayTopMatches(jobs) {
         ? "Top Match"
         : "Top Match"
     }
- 
+
 </span>
- 
+
             </div>
- 
+
             <button
                 class="learn-more-btn"
                 data-link="${job.link}"
             >
- 
+
                 Learn More →
- 
+
             </button>
- 
+
         `;
- 
+
     card
       .querySelector(".learn-more-btn")
       .addEventListener("click", () => {
         window.location.href = `job.html?id=${job.id}`;
       });
- 
+
     topMatches.appendChild(card);
   });
 }
- 
+
 function displayOtherJobs(jobs) {
   otherJobsList.innerHTML = "";
- 
+
   jobs.forEach((job, index) => {
     const card = document.createElement("div");
- 
+
     card.className = "career-card";
- 
+
     card.innerHTML = `
- 
+
             <div class="career-info">
- 
+
                 <h3>${job.title}</h3>
- 
+
                 <p>${job.description}</p>
- 
+
             </div>
- 
+
             <button
                 class="learn-more-btn"
                 data-link="${job.link}"
             >
- 
+
                 Learn More →
- 
+
             </button>
- 
+
         `;
- 
+
     card
       .querySelector(".learn-more-btn")
       .addEventListener("click", () => {
-        window.location.href = job.link;
+        window.location.href = `job.html?id=${job.id}`;
       });
- 
+
     otherJobsList.appendChild(card);
   });
 }
 window.addEventListener("load", () => {
   const saved = localStorage.getItem("careerResults");
- 
+
   if (!saved) return;
- 
+
   const data = JSON.parse(saved);
- 
+
   landingPage.classList.remove("active");
   quizPage.classList.remove("active");
   resultPage.classList.add("active");
- 
+
   renderResults(data);
   currentQuestion = 0;
   selectedAnswer = null;
 });
- 
+
 async function loadCareerResults(primary, secondary) {
   try {
     const response = await fetch(
-      `${API_URL}?primary=${primary}&secondary=${secondary}`,
+      `${API_URL}?action=results&primary=${primary}&secondary=${secondary}`,
     );
- 
+
     if (!response.ok) {
       throw new Error("Failed to fetch career data.");
     }
- 
+
     const data = await response.json();
- 
+
     data.primary = primary;
     data.secondary = secondary;
 
+    // FIX: these were never being set, so the personality
+    // panel descriptions were always blank.
     data.primaryDescription = descriptions[primary];
     data.secondaryDescription = descriptions[secondary];
- 
+
     localStorage.setItem(
       "careerResults",
       JSON.stringify(data),
     );
- 
+
     renderResults(data);
   } catch (error) {
     console.error(error);
- 
+
     topMatches.innerHTML = `
     <div class="career-card">
         <h3>Unable to load careers.</h3>
         <p>Please try again later.</p>
     </div>
 `;
- 
+
     otherJobsList.innerHTML = "";
   }
 }

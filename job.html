@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Information</title>
+
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="job.css">
+
+    <script defer src="nav.js"></script>
+    <script defer src="job.js"></script>
+  </head>
+
+  <body>
+    <!-- ===========================
+Navigation
+============================ -->
+
+    <nav>
+      <ul class="sidebar">
+        <li onclick="hideSidebar()">
+          <a href="#"><button class="close-button">&times;</button></a>
+        </li>
+
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="job.html">Jobs</a></li>
+      </ul>
+
+      <ul class="main-menu">
+        <li class="logo">
+          <img class="logo-light" src="img/logo.webp">
+          <img class="logo-dark" src="img/logo_dark.webp">
+          <span>Cureer</span>
+        </li>
+
+        <li class="hideOnMobile"><a href="index.html">Home</a></li>
+        <li class="hideOnMobile"><a href="quiz.html">Quiz</a></li>
+        <li class="hideOnMobile"><a href="job.html">Methods</a></li>
+
+        <li class="theme-toggle" onclick="toggleTheme()">
+          <img id="theme-icon" src="img/sun.png">
+        </li>
+
+        <li class="menu-button" onclick="showSidebar()">
+          <a href="#">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M4 6h16M4 12h16M4 18h16"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ===========================
+Hero
+============================ -->
+
+    <header class="hero">
+      <div class="hero-background"></div>
+
+      <img id="job-image" class="hero-image" src="" alt="Career Image">
+    </header>
+
+    <!-- Clouds -->
+
+    <div class="cloud-divider">
+      <img src="img/clouds.webp" alt="Cloud Divider">
+    </div>
+
+    <!-- ===========================
+Main
+============================ -->
+
+    <main class="container">
+      <!-- Job Title -->
+
+      <section class="job-heading">
+        <h1 id="job-title">
+          Accountant
+        </h1>
+
+        <p id="job-description">
+          They help companies keep track of their money.
+        </p>
+      </section>
+
+      <!-- ======================= -->
+
+      <section class="info-grid">
+        <!-- Personality -->
+
+        <div class="card">
+          <h2>Does this job match me?</h2>
+
+          <p>
+            This career usually suits people with these personalities.
+          </p>
+
+          <div id="personality-container">
+            <!-- JS inserts personalities -->
+          </div>
+        </div>
+
+        <!-- Salary -->
+
+        <div class="card">
+          <h2>Salary Expectation</h2>
+
+          <p>Estimated salary in Malaysia.</p>
+
+          <div class="salary">
+            <div>
+              <small>Starting Salary</small>
+
+              <h3 id="salary-start">
+                RM0
+              </h3>
+            </div>
+
+            <span class="arrow">
+              →
+            </span>
+
+            <div>
+              <small>Experienced Salary</small>
+
+              <h3 id="salary-end">
+                RM0
+              </h3>
+            </div>
+          </div>
+
+          <small class="note">
+            *Salary estimates may vary.
+          </small>
+        </div>
+
+        <!-- Pathway -->
+
+        <div class="card">
+          <h2>Academic Pathway</h2>
+
+          <p>One possible route into this career.</p>
+
+          <div id="pathway">
+            <!-- JS -->
+          </div>
+        </div>
+
+        <!-- Schools -->
+
+        <div class="card">
+          <h2>Suggested Schools</h2>
+
+          <p>Institutions offering related courses.</p>
+
+          <ul id="school-list"></ul>
+        </div>
+
+        <!-- Start Now -->
+
+        <div class="card wide">
+          <h2>Start Now</h2>
+
+          <p id="start-now"></p>
+        </div>
+      </section>
+
+      <!-- =======================
+Quiz
+======================= -->
+
+      <section class="quiz-card">
+        <h2>Test Your Job Knowledge</h2>
+
+        <p id="quiz-progress">
+          Question 1 / 3
+        </p>
+
+        <div class="quiz-progress">
+          <div id="quiz-progress-fill"></div>
+        </div>
+
+        <h3 id="quiz-question"></h3>
+
+        <div id="quiz-options">
+          <!-- JS -->
+        </div>
+
+        <button id="quiz-next">
+          Next
+        </button>
+      </section>
+
+      <!-- =======================
+Related Jobs
+======================= -->
+
+      <section class="related-section">
+        <h2>
+          More Jobs Like This
+        </h2>
+
+        <div id="related-jobs">
+          <!-- JS inserts cards -->
+        </div>
+      </section>
+    </main>
+
+    <!-- ===========================
+Template for Related Jobs
+============================ -->
+
+    <template id="related-card-template">
+      <div class="related-card">
+        <img class="related-image" src="" alt="">
+
+        <div class="related-content">
+          <h3 class="related-title"></h3>
+
+          <p class="related-description"></p>
+
+          <a class="related-link">
+            Learn More →
+          </a>
+        </div>
+      </div>
+    </template>
+  </body>
+</html>

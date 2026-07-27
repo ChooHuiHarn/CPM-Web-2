@@ -410,6 +410,9 @@ function finishQuiz() {
 
   quizProgressFill.style.width = "100%";
 
+  /* Hide the Next button — only Try Again should be visible */
+  quizNext.style.display = "none";
+
   const button = document.createElement("button");
 
   button.className = "quiz-option";

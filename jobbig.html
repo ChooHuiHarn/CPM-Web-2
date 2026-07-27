@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs — Cureer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Modak&family=Ultra&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="jobbig.css">
+
+    <script defer src="nav.js"></script>
+    <script defer src="jobbig.js"></script>
+  </head>
+
+  <body>
+    <!-- Nav -->
+    <nav>
+      <ul class="sidebar">
+        <li onclick="hideSidebar()">
+          <a href="#"><button class="close-button">&times;</button></a>
+        </li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="jobbig.html">Jobs</a></li>
+      </ul>
+
+      <ul class="main-menu">
+        <li class="logo">
+          <img class="logo-light" src="img/logo.webp" alt="Cureer Logo">
+          <img class="logo-dark" src="img/logo_dark.webp" alt="Cureer Logo">
+          <span>Cureer</span>
+        </li>
+        <li class="hideOnMobile"><a href="index.html">Home</a></li>
+        <li class="hideOnMobile"><a href="quiz.html">Quiz</a></li>
+        <li class="hideOnMobile"><a href="jobbig.html">Jobs</a></li>
+
+        <li class="theme-toggle" onclick="toggleTheme()">
+          <img id="theme-icon" src="img/sun.png" alt="Theme Icon">
+        </li>
+
+        <li class="menu-button" onclick="showSidebar()">
+          <a href="#">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Search -->
+    <div class="search-wrapper">
+      <div class="search-bar">
+        <input
+          id="search-input"
+          type="text"
+          placeholder="search"
+          autocomplete="off"
+          aria-label="Search jobs"
+        >
+        <button class="search-icon" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Jobs Grid -->
+    <main class="jobs-container">
+      <!-- Loading -->
+      <div id="jobs-loader" class="jobs-loader">
+        <div class="loader-spinner"></div>
+        <p>Loading careers…</p>
+      </div>
+
+      <!-- No results -->
+      <p id="no-results" class="no-results hidden">No careers match your search.</p>
+
+      <!-- Grid -->
+      <div id="jobs-grid" class="jobs-grid"></div>
+    </main>
+
+    <!-- Card template -->
+    <template id="job-card-template">
+      <div class="jb-card">
+        <div class="jb-card-image">
+          <img src="" alt="">
+        </div>
+        <div class="jb-card-body">
+          <h3 class="jb-card-title"></h3>
+          <p class="jb-card-desc"></p>
+          <button class="jb-learn-more">Learn More &nbsp;↗</button>
+        </div>
+      </div>
+    </template>
+  </body>
+</html>

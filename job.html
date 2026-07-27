@@ -68,17 +68,16 @@ Hero
       <img id="job-image" class="hero-image" src="" alt="Career Image">
     </header>
 
-    <!-- Clouds -->
-
-    <div class="cloud-divider">
-      <img src="img/clouds.webp" alt="Cloud Divider">
-    </div>
-
     <!-- ===========================
 Main
 ============================ -->
 
     <main class="container">
+      <!-- Loading overlay — shown while API data is being fetched -->
+      <div id="page-loader">
+        <div class="loader-spinner"></div>
+        <p>Loading career info…</p>
+      </div>
       <!-- Job Title -->
 
       <section class="job-heading">

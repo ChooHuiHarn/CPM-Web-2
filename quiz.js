@@ -275,6 +275,15 @@ function showResults() {
   const primary = ranking[0][0];
   const secondary = ranking[1][0];
 
+  // Fill the personality panel instantly from local data —
+  // no network call needed for this part.
+  primaryName.textContent = personalityNames(primary);
+  secondaryName.textContent = personalityNames(secondary);
+  primaryDescription.textContent = descriptions[primary];
+  secondaryDescription.textContent = descriptions[secondary];
+  document.querySelector(".other-jobs h2").textContent =
+    `Other ${personalityNames(primary)} Careers`;
+
   loadCareerResults(primary, secondary);
 }
 
@@ -460,6 +469,14 @@ window.addEventListener("load", () => {
 });
 
 async function loadCareerResults(primary, secondary) {
+  // Show a spinner in the jobs panel while the API responds.
+  topMatches.innerHTML = `
+    <div class="results-loading">
+      <div class="spinner"></div>
+      <p>Finding your best matches…</p>
+    </div>`;
+  otherJobsList.innerHTML = "";
+
   try {
     const response = await fetch(
       `${API_URL}?action=results&primary=${primary}&secondary=${secondary}`,
@@ -473,9 +490,6 @@ async function loadCareerResults(primary, secondary) {
 
     data.primary = primary;
     data.secondary = secondary;
-
-    // FIX: these were never being set, so the personality
-    // panel descriptions were always blank.
     data.primaryDescription = descriptions[primary];
     data.secondaryDescription = descriptions[secondary];
 
@@ -492,8 +506,7 @@ async function loadCareerResults(primary, secondary) {
     <div class="career-card">
         <h3>Unable to load careers.</h3>
         <p>Please try again later.</p>
-    </div>
-`;
+    </div>`;
 
     otherJobsList.innerHTML = "";
   }

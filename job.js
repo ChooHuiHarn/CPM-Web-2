@@ -11,6 +11,23 @@ const API_URL =
   "https://script.google.com/macros/s/AKfycbxQBx4JvjiaqWRjl_Uq86z-kfxSgsB4wLbRgEZOonNf6yczHxkBlSA50Zx_1lqpMKHt/exec";
 
 /*------------------------------------
+Personality Descriptions (local)
+These are used in the "Does this job
+match me?" section so they always
+load instantly, without depending on
+the API returning description fields.
+------------------------------------*/
+
+const descriptions = {
+  R: "You enjoy practical, hands-on activities and solving real-world problems.",
+  I: "You enjoy analysing, researching, and discovering new ideas.",
+  A: "You enjoy expressing yourself through creativity and imagination.",
+  S: "You enjoy helping, teaching, and working with other people.",
+  E: "You enjoy leading, persuading, and managing people or projects.",
+  C: "You enjoy organising, planning, and working with structure.",
+};
+
+/*------------------------------------
 Read Job ID
 Example:
 job.html?id=accountant
@@ -59,8 +76,15 @@ window.addEventListener("DOMContentLoaded", loadJob);
 Fetch Job Data
 ------------------------------------*/
 
+const pageLoader = document.getElementById("page-loader");
+
+function hideLoader() {
+  if (pageLoader) pageLoader.classList.add("hidden");
+}
+
 async function loadJob() {
   if (!jobID) {
+    hideLoader();
     jobTitle.textContent = "Job Not Found";
     jobDescription.textContent = "No job ID was provided in the URL.";
     return;
@@ -74,14 +98,17 @@ async function loadJob() {
     const data = await response.json();
 
     if (data.error) {
+      hideLoader();
       jobTitle.textContent = "Job Not Found";
       jobDescription.textContent = data.error;
       return;
     }
 
     displayJob(data);
+    hideLoader();
   } catch (error) {
     console.error(error);
+    hideLoader();
     jobTitle.textContent = "Error";
     jobDescription.textContent =
       "Could not load job data. Please try again later.";
@@ -107,14 +134,16 @@ function displayJob(data) {
 
   // FIX: build the two personality entries into the single
   // container instead of targeting elements that don't exist.
+  // Use local descriptions so they always show — the API does
+  // not return primaryDescription / secondaryDescription fields.
   personalityContainer.innerHTML = `
     <div class="personality-tag">
       <h3>${personalityName(data.primary)}</h3>
-      <p>${data.primaryDescription || "Description not available."}</p>
+      <p>${descriptions[data.primary] || data.primaryDescription || "Description not available."}</p>
     </div>
     <div class="personality-tag">
       <h3>${personalityName(data.secondary)}</h3>
-      <p>${data.secondaryDescription || "Description not available."}</p>
+      <p>${descriptions[data.secondary] || data.secondaryDescription || "Description not available."}</p>
     </div>
   `;
 

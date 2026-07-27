@@ -110,13 +110,14 @@ Hero
   overflow: hidden;
   text-align: center;
   position: relative;
+  margin-top: -110px;
 }
 
+
 .hero-image {
-  width: 260px;
+  width: 400px;
   display: block;
-  
-  margin: 40px auto 10px;
+  margin: 110px auto 10px;
 }
 
 .hero::after {

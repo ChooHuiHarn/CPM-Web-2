@@ -498,52 +498,23 @@ function createRelatedCard(job) {
 }
 
 /*------------------------------------
-Previous / Next Buttons
-(Optional)
+Carousel Arrows
 ------------------------------------*/
 
 const previousRelated = document.getElementById("previous-related");
 
 const nextRelated = document.getElementById("next-related");
 
-let relatedIndex = 0;
-
-function updateRelatedView() {
-  const cards = document.querySelectorAll(".job-card");
-
-  cards.forEach((card, index) => {
-    if (
-      index >= relatedIndex &&
-      index < relatedIndex + 3
-    ) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-}
+const CARD_SCROLL = 320; /* card width (300px) + gap (20px) */
 
 if (previousRelated) {
   previousRelated.addEventListener("click", () => {
-    if (relatedIndex > 0) {
-      relatedIndex--;
-
-      updateRelatedView();
-    }
+    relatedJobsContainer.scrollBy({ left: -CARD_SCROLL, behavior: "smooth" });
   });
 }
 
 if (nextRelated) {
   nextRelated.addEventListener("click", () => {
-    const cards = document.querySelectorAll(".job-card");
-
-    if (
-      relatedIndex <
-        cards.length - 3
-    ) {
-      relatedIndex++;
-
-      updateRelatedView();
-    }
+    relatedJobsContainer.scrollBy({ left: CARD_SCROLL, behavior: "smooth" });
   });
 }

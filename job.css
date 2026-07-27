@@ -118,16 +118,23 @@ Hero
   width: 400px;
   display: block;
   margin: 110px auto 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero::after {
   content: "";
   display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 30px;
   background: radial-gradient(circle at 20px 0, var(--background) 20px, transparent 21px)
     repeat-x;
   background-size: 40px 30px;
   transform: rotate(180deg);
+  z-index: 2;
 }
 
 .cloud-divider img {
@@ -393,18 +400,57 @@ is id="related-jobs" (not class="related-jobs").
   margin-bottom: 25px;
 }
 
+/* Carousel wrapper holds arrows + scroll track */
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.carousel-btn {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--light-blue);
+  background: var(--background);
+  color: var(--text);
+  font-size: 22px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: var(--light-blue);
+}
+
 #related-jobs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+  /* hide scrollbar but keep scroll functionality */
+  scrollbar-width: none;
+}
+
+#related-jobs::-webkit-scrollbar {
+  display: none;
 }
 
 .job-card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
   background: var(--background);
   border: 2px solid var(--light-blue);
   border-radius: 18px;
   overflow: hidden;
-  transition: 0.25s;
+  transition: transform 0.25s;
 }
 
 .job-card:hover {
@@ -433,8 +479,6 @@ is id="related-jobs" (not class="related-jobs").
   line-height: 1.4;
 }
 
-/* FIX: job.js creates a <button class="learn-more-btn">, not an
-<a class="learn-more">, so this needed to target the button. */
 .learn-more-btn {
   display: block;
   width: 100%;
@@ -442,7 +486,7 @@ is id="related-jobs" (not class="related-jobs").
   margin-top: 12px;
   background: none;
   border: none;
-  color: var(--blue);
+  color: var(--vibrant-blue);
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
@@ -450,7 +494,7 @@ is id="related-jobs" (not class="related-jobs").
 }
 
 .learn-more-btn:hover {
-  color: var(--blue-dark);
+  color: var(--text);
 }
 
 /*=========================

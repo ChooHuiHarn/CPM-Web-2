@@ -1,10 +1,31 @@
 :root {
-  --blue: #6f97ff;
-  --blue-dark: #253a86;
-  --blue-light: #edf3ff;
-  --border: #86a8ff;
-  --grid: #dfe8ff;
-  --bg: #f8fbff;
+  --background: #f5f5f5;
+  --grid: #eaeaff;
+  --purple: #b469ff;
+  --pink: #ff66bc;
+  --orange: #fc6b44;
+  --yellow: #ffea29;
+  --green: #03d66c;
+  --vibrant-blue: #6397ff;
+  --medium-blue: #7eb0fc; 
+  --light-blue: #9fc2fd;
+  --text: #1a2376;
+  --retake-blue: #7eb0fc;
+}
+
+.dark-theme {
+  --background: #0f1427;
+  --grid: #252e50;
+  --purple: #b469ff;
+  --pink: #ff66bc;
+  --orange: #fc6b44;
+  --yellow: #ffea29;
+  --green: #03d66c;
+  --vibrant-blue: #4891ff;
+  --medium-blue: #132542;
+  --light-blue: #1b3864;
+  --text: #f5f5f5;
+  --retake-blue: #7eb0fc;
 }
 
 * {
@@ -14,16 +35,17 @@
 }
 
 body {
+  background-color: var(--background);
+  color: var(--text);
   font-family: "Atkinson Hyperlegible", sans-serif;
-  color: var(--blue-dark);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  padding-top: 76px;
 
-  background:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 35px 35px;
-  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, var(--grid) 0.1em, transparent 0.1em);
+  background-size: 2em 2em;
 }
-
 /*=========================
 Container
 ==========================*/
@@ -48,14 +70,14 @@ Page Loader Overlay
   align-items: center;
   justify-content: center;
   gap: 18px;
-  background: var(--bg);
+  background: var(--background);
   min-height: 400px;
   border-radius: 18px;
 }
 
 #page-loader p {
   font-size: 18px;
-  color: #5b6da3;
+  color: var(--medium-blue);
 }
 
 #page-loader.hidden {
@@ -69,7 +91,7 @@ Spinner (shared)
 .loader-spinner {
   width: 52px;
   height: 52px;
-  border: 5px solid #d9e4ff;
+  border: 5px solid var(--grid);
   border-top-color: var(--blue);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -84,8 +106,7 @@ Hero
 ==========================*/
 
 .hero {
-  background: #a8c6ff;
-  border-radius: 30px;
+  background: var(--light-blue);
   overflow: hidden;
   text-align: center;
   position: relative;
@@ -94,6 +115,7 @@ Hero
 .hero-image {
   width: 260px;
   display: block;
+  
   margin: 40px auto 10px;
 }
 
@@ -101,9 +123,10 @@ Hero
   content: "";
   display: block;
   height: 30px;
-  background: radial-gradient(circle at 20px 0, #fff 20px, transparent 21px)
+  background: radial-gradient(circle at 20px 0, var(--background) 20px, transparent 21px)
     repeat-x;
   background-size: 40px 30px;
+  transform: rotate(180deg);
 }
 
 .cloud-divider img {
@@ -123,13 +146,15 @@ FIX: job.html uses #job-title / #job-description
 }
 
 #job-title {
-  font-size: 44px;
-  font-weight: 700;
+  font-size: 45px;
+  font-weight: 700 !important;
+  font-family: "Ultra", serif !important;
 }
 
 #job-description {
   font-size: 20px;
-  color: #4a5b8c;
+  color: var(--text);
+  
   margin-top: 10px;
 }
 
@@ -145,9 +170,9 @@ Info Grid
 }
 
 .card {
-  background: white;
-  border: 3px solid var(--border);
-  border-radius: 18px;
+  background: var(--background);
+  border: 3px solid var(--light-blue);
+  border-radius: 14px;
   padding: 22px;
 }
 
@@ -188,7 +213,7 @@ their own styling.
 
 .personality-tag h3 {
   font-size: 22px;
-  color: var(--blue-dark);
+  color: var(--text);
 }
 
 .personality-tag p {
@@ -217,7 +242,7 @@ class="arrow" (not .salary-arrow).
   display: block;
   font-size: 15px;
   margin-bottom: 6px;
-  color: #5b6da3;
+  color: var(--text);
 }
 
 .salary h3 {
@@ -226,7 +251,7 @@ class="arrow" (not .salary-arrow).
 
 .arrow {
   font-size: 42px;
-  color: var(--blue);
+  color: var(--retake-blue);
 }
 
 /*=========================
@@ -241,7 +266,7 @@ FIX: job.html has id="pathway", not class="pathway".
 }
 
 .pathway-arrow {
-  color: var(--blue);
+  color: var(--retake-blue);
   font-size: 42px;
 }
 
@@ -267,8 +292,8 @@ and the progress fill/question/options are ids, not classes.
 
 .quiz-card {
   margin-top: 45px;
-  background: white;
-  border: 3px solid var(--border);
+  background: var(--background);
+  border: 3px solid var(--light-blue);
   border-radius: 18px;
   padding: 30px;
   text-align: center;
@@ -297,7 +322,7 @@ job.js sets the width on #quiz-progress-fill. */
 #quiz-progress-fill {
   width: 0%;
   height: 100%;
-  background: var(--blue);
+  background:   #7eb0fc;
   transition: width 0.3s ease;
 }
 
@@ -314,7 +339,7 @@ job.js sets the width on #quiz-progress-fill. */
 
 #quiz-options button {
   height: 60px;
-  border: 3px solid var(--border);
+  border: 3px solid var(--retake-blue);
   background: white;
   border-radius: 15px;
   font-size: 22px;
@@ -328,15 +353,15 @@ job.js sets the width on #quiz-progress-fill. */
 
 /* FIX: no rule previously showed which answer was selected. */
 #quiz-options button.selected {
-  background: var(--blue);
+  background: var(--retake-blue);
   color: white;
-  border-color: var(--blue);
+  border-color: var(--retake-blue);
 }
 
 /* FIX: #quiz-next had no styling at all before. */
 #quiz-next {
   margin-top: 25px;
-  background: var(--blue);
+  background: var(--retake-blue);
   color: white;
   border: none;
   padding: 14px 45px;
@@ -348,7 +373,7 @@ job.js sets the width on #quiz-progress-fill. */
 }
 
 #quiz-next:hover {
-  background: var(--blue-dark);
+  background: #253a86;
 }
 
 /*=========================
@@ -374,8 +399,8 @@ is id="related-jobs" (not class="related-jobs").
 }
 
 .job-card {
-  background: white;
-  border: 2px solid var(--border);
+  background: var(--background);
+  border: 2px solid var(--light-blue);
   border-radius: 18px;
   overflow: hidden;
   transition: 0.25s;
@@ -398,10 +423,12 @@ is id="related-jobs" (not class="related-jobs").
 .job-card h3 {
   font-size: 24px;
   margin-bottom: 8px;
+  font-family: "Ultra", serif;
+  font-weight: 700;
 }
 
 .job-card p {
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.4;
 }
 

@@ -83,47 +83,17 @@
 
       <!-- Careers -->
       <section class="careers-section">
-        <div class="container">
-          <h2 class="section-title careers-title">Careers</h2>
-          <div class="careers-grid">
-
-            <div class="career-card">
-              <h3>Software Engineer</h3>
-              <p>Design, build, and maintain software applications and systems that power the modern world.</p>
-              <div class="career-footer">
-                <span class="salary">$70k – $160k/yr</span>
-                <span class="career-badge badge-blue">SMT</span>
-              </div>
-            </div>
-
-            <div class="career-card">
-              <h3>Graphic Designer</h3>
-              <p>Create visual concepts and stunning designs across digital media, branding, and print.</p>
-              <div class="career-footer">
-                <span class="salary">$45k – $90k/yr</span>
-                <span class="career-badge badge-pink">SMT</span>
-              </div>
-            </div>
-
-            <div class="career-card">
-              <h3>Social Worker</h3>
-              <p>Support vulnerable individuals and communities to navigate challenges and access the services they need.</p>
-              <div class="career-footer">
-                <span class="salary">$40k – $80k/yr</span>
-                <span class="career-badge badge-orange">SMT</span>
-              </div>
-            </div>
-
-            <div class="career-card">
-              <h3>Digital Marketer</h3>
-              <p>Create and execute campaigns across social media, SEO, and paid ads to grow brands and audiences.</p>
-              <div class="career-footer">
-                <span class="salary">$45k – $100k/yr</span>
-                <span class="career-badge badge-green">SMT</span>
-              </div>
-            </div>
-
+        <h2 class="section-title careers-title">Careers</h2>
+        <div class="careers-carousel-wrapper">
+          <button class="careers-carousel-btn" id="careers-prev" aria-label="Previous">&#8592;</button>
+          <div class="careers-carousel" id="careers-carousel">
+            <!-- JS renders cards; static fallbacks shown until API loads -->
+            <div class="career-card career-card--skeleton"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+            <div class="career-card career-card--skeleton"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+            <div class="career-card career-card--skeleton"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+            <div class="career-card career-card--skeleton"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
           </div>
+          <button class="careers-carousel-btn" id="careers-next" aria-label="Next">&#8594;</button>
         </div>
       </section>
 

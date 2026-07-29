@@ -1,4 +1,87 @@
 // =====================
+// Careers Carousel
+// =====================
+(function () {
+  const CAREERS_API =
+    "https://script.google.com/macros/s/AKfycbxQBx4JvjiaqWRjl_Uq86z-kfxSgsB4wLbRgEZOonNf6yczHxkBlSA50Zx_1lqpMKHt/exec";
+
+  const BADGE = {
+    R: { cls: "badge-blue",   label: "Realistic" },
+    I: { cls: "badge-purple", label: "Investigative" },
+    A: { cls: "badge-pink",   label: "Artistic" },
+    S: { cls: "badge-green",  label: "Social" },
+    E: { cls: "badge-orange", label: "Enterprising" },
+    C: { cls: "badge-yellow", label: "Conventional" },
+  };
+
+  const carousel = document.getElementById("careers-carousel");
+  const prevBtn  = document.getElementById("careers-prev");
+  const nextBtn  = document.getElementById("careers-next");
+
+  if (!carousel) return; // not on home page
+
+  const CARD_W = 260; // card width + gap
+
+  if (prevBtn) prevBtn.addEventListener("click", () => carousel.scrollBy({ left: -CARD_W * 3, behavior: "smooth" }));
+  if (nextBtn) nextBtn.addEventListener("click", () => carousel.scrollBy({ left:  CARD_W * 3, behavior: "smooth" }));
+
+  async function fetchCareers() {
+    const TYPES = ["R", "I", "A", "S", "E", "C"];
+    const responses = await Promise.all(
+      TYPES.map((t) =>
+        fetch(`${CAREERS_API}?action=results&primary=${t}&secondary=R`).then((r) => r.json())
+      )
+    );
+
+    const seen = new Set();
+    const jobs = [];
+    responses.forEach((data) => {
+      [...(data.topMatches || []), ...(data.otherJobs || [])].forEach((job) => {
+        if (job.id && !seen.has(job.id)) {
+          seen.add(job.id);
+          jobs.push(job);
+        }
+      });
+    });
+
+    jobs.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+    return jobs;
+  }
+
+  function buildCard(job) {
+    const badge = BADGE[job.primary] || { cls: "badge-blue", label: job.primary || "" };
+    const salary = (job.salaryStart && job.salaryEnd)
+      ? `${job.salaryStart} – ${job.salaryEnd}`
+      : (job.salary || "");
+
+    const a = document.createElement("a");
+    a.className = "career-card";
+    a.href = `job.html?id=${job.id}`;
+    a.innerHTML = `
+      <h3>${job.title || ""}</h3>
+      <p>${job.shortDescription || job.description || ""}</p>
+      <div class="career-footer">
+        ${salary ? `<span class="salary">${salary}</span>` : "<span></span>"}
+        <span class="career-badge ${badge.cls}">${badge.label}</span>
+      </div>`;
+    return a;
+  }
+
+  fetchCareers()
+    .then((jobs) => {
+      carousel.innerHTML = "";
+      if (!jobs.length) {
+        carousel.innerHTML = "<p style='padding:20px;color:var(--text);opacity:.6'>No careers found.</p>";
+        return;
+      }
+      jobs.forEach((job) => carousel.appendChild(buildCard(job)));
+    })
+    .catch(() => {
+      carousel.innerHTML = "<p style='padding:20px;color:var(--text);opacity:.6'>Could not load careers.</p>";
+    });
+})();
+
+// =====================
 // FAQ Modal
 // =====================
 document.querySelectorAll(".faq-item").forEach((btn) => {

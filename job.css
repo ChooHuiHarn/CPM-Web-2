@@ -500,6 +500,44 @@ is id="related-jobs" (not class="related-jobs").
 Responsive
 ==========================*/
 
+/* Make the hero image fluid so it never overflows a narrow phone */
+.hero-image {
+  width: min(400px, 85vw);
+}
+
+@media (max-width: 600px) {
+  /* Hero image */
+  .hero-image { margin-top: 100px; }
+
+  /* Heading */
+  #job-title       { font-size: 26px; }
+  #job-description { font-size: 15px; }
+
+  /* Info cards */
+  .card h2 { font-size: 22px; }
+  .card h3 { font-size: 18px; margin-top: 8px; }
+  .card p  { font-size: 16px; }
+
+  /* Salary */
+  .salary h3 { font-size: 28px; }
+
+  /* Pathway */
+  #pathway       { font-size: 18px; }
+  .pathway-arrow { font-size: 26px; }
+
+  /* Schools */
+  #school-list   { font-size: 16px; }
+
+  /* Knowledge quiz */
+  .quiz-card h2        { font-size: 22px; }
+  #quiz-question       { font-size: 20px; }
+  #quiz-options button { font-size: 16px; height: 50px; }
+  #quiz-next           { font-size: 15px; padding: 12px 30px; }
+
+  /* Related jobs heading */
+  .related-section h2 { font-size: 26px; }
+}
+
 @media (max-width: 1000px) {
   .info-grid {
     grid-template-columns: 1fr;

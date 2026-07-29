@@ -494,6 +494,49 @@ Results Loading Spinner
   to { transform: rotate(360deg); }
 }
 
+@media (max-width: 600px) {
+  /* Logo */
+  .CoLogo { width: min(320px, 88vw); margin-bottom: -20px; }
+
+  /* Question text */
+  #question { font-size: 24px; }
+
+  /* Answers: 2-column on phones */
+  .answers {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .answer-btn {
+    font-size: 18px;
+    padding: 16px 10px;
+    min-height: 70px;
+  }
+
+  /* Next button */
+  #next-btn { font-size: 20px; height: 48px; }
+
+  /* Results panel typography */
+  .personality-panel h1 { font-size: 26px; }
+  .primary-personality h2,
+  .secondary-personality h2 { font-size: 22px; }
+  .primary-personality p,
+  .secondary-personality p  { font-size: 16px; }
+  .career-info h3 { font-size: 22px; }
+  .career-info p  { font-size: 16px; }
+  .jobs-panel h1  { font-size: 28px; }
+
+  /* Hero text */
+  .hero h1 { font-size: 32px; }
+  .hero p  { font-size: 17px; }
+}
+
+@media (max-width: 420px) {
+  /* Single column on very narrow phones */
+  .answers { grid-template-columns: 1fr; }
+  #question { font-size: 22px; }
+}
+
 @media (max-width: 900px) {
 .CoLogo {
   width: 400px;

@@ -35,7 +35,7 @@ job.html#accountant
 
 // Hash is never sent to the server or rewritten by proxies,
 // so it survives static-file hosting without any query-string issues.
-const jobID = window.location.hash.slice(1) || null;
+// jobID is read dynamically in loadJob() so hash changes work
 
 /*------------------------------------
 HTML Elements
@@ -71,6 +71,7 @@ Load Job
 ------------------------------------*/
 
 window.addEventListener("DOMContentLoaded", loadJob);
+window.addEventListener("hashchange", loadJob);
 
 /*------------------------------------
 Fetch Job Data
@@ -83,12 +84,19 @@ function hideLoader() {
 }
 
 async function loadJob() {
+  const jobID = window.location.hash.slice(1) || null;
+
+  // Scroll to top when navigating to a new job
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
   if (!jobID) {
     hideLoader();
     jobTitle.textContent = "Job Not Found";
     jobDescription.textContent = "No job ID was provided in the URL.";
     return;
   }
+
+  if (pageLoader) pageLoader.classList.remove("hidden");
 
   try {
     const response = await fetch(

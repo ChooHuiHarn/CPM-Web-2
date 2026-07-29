@@ -407,7 +407,7 @@ function displayTopMatches(jobs) {
     card
       .querySelector(".learn-more-btn")
       .addEventListener("click", () => {
-        window.location.href = `job.html?id=${job.id}`;
+        window.location.href = `job.html#${job.id}`;
       });
 
     topMatches.appendChild(card);
@@ -446,7 +446,7 @@ function displayOtherJobs(jobs) {
     card
       .querySelector(".learn-more-btn")
       .addEventListener("click", () => {
-        window.location.href = `job.html?id=${job.id}`;
+        window.location.href = `job.html#${job.id}`;
       });
 
     otherJobsList.appendChild(card);

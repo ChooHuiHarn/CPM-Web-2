@@ -56,7 +56,7 @@
 
     const a = document.createElement("a");
     a.className = "career-card";
-    a.href = `job.html?id=${job.id}`;
+    a.href = `job.html#${job.id}`;
     a.innerHTML = `
       <h3>${job.title || ""}</h3>
       <p>${job.shortDescription || job.description || ""}</p>

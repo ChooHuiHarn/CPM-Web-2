@@ -108,13 +108,13 @@ function renderGrid(jobs) {
 
     const btn = clone.querySelector(".jb-learn-more");
     btn.addEventListener("click", () => {
-      window.location.href = `job.html?id=${job.id}`;
+      window.location.href = `job.html#${job.id}`;
     });
 
     /* whole card is also clickable */
     card.addEventListener("click", (e) => {
       if (e.target.closest(".jb-learn-more")) return;
-      window.location.href = `job.html?id=${job.id}`;
+      window.location.href = `job.html#${job.id}`;
     });
 
     jobsGrid.appendChild(clone);

@@ -30,12 +30,12 @@ const descriptions = {
 /*------------------------------------
 Read Job ID
 Example:
-job.html?id=accountant
+job.html#accountant
 ------------------------------------*/
 
-const params = new URLSearchParams(window.location.search);
-
-const jobID = params.get("id");
+// Hash is never sent to the server or rewritten by proxies,
+// so it survives static-file hosting without any query-string issues.
+const jobID = window.location.hash.slice(1) || null;
 
 /*------------------------------------
 HTML Elements
@@ -494,7 +494,7 @@ function createRelatedCard(job) {
   card
     .querySelector(".learn-more-btn")
     .addEventListener("click", () => {
-      window.location.href = `job.html?id=${job.id}`;
+      window.location.href = `job.html#${job.id}`;
     });
 
   return card;

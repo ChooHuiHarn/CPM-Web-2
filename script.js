@@ -49,7 +49,9 @@
   }
 
   function buildCard(job) {
-    const badge = BADGE[job.primary] || { cls: "badge-blue", label: job.primary || "" };
+    // Results API returns `category` (e.g. "R"); job detail API returns `primary`
+    const type = job.primary || job.category || "";
+    const badge = BADGE[type] || { cls: "badge-blue", label: type };
     const salary = (job.salaryStart && job.salaryEnd)
       ? `${job.salaryStart} – ${job.salaryEnd}`
       : (job.salary || "");

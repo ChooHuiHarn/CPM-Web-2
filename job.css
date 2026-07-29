@@ -75,7 +75,7 @@ Page Loader Overlay
 
 #page-loader p {
   font-size: 18px;
-  color: var(--medium-blue);
+  color: var(--retake-blue);
 }
 
 #page-loader.hidden {

@@ -124,7 +124,7 @@ body {
 
 .jobs-loader p {
   font-size: 18px;
-  color: var(--medium-blue);
+  color: var(--retake-blue);
 }
 
 .loader-spinner {

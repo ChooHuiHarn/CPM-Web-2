@@ -775,9 +775,7 @@ h2.section-title {
 }
 
 
-/* ============================================
-   Phone overrides  (≤ 600 px)
-   ============================================ */
+/* Phone */
 html { overflow-x: hidden; }
 body { overflow-x: hidden; }
 
@@ -790,39 +788,53 @@ body { overflow-x: hidden; }
 
   .hero-title { font-size: 36px; }
 
-  /* --- Decorations: keep them but scale to fit phone edges --- */
-
-  /* Hide center decorations that would sit behind/over the title text */
-  .decorations .decoration-circleG,
-  .decorations .decoration-line,
-  .decorations .decoration-magnifyi,
-  .decorations .decoration-curveP,
-  .decorations .decoration-curvePi,
-  .decorations .decoration-circleP,
-  .decorations .decoration-starB { display: none; }
-
-  /* Left-side: book (top) + stethoscope (bottom) */
   .decorations .decoration-book {
     width: 88px; height: auto;
-    top: 60px; left: 6px;
+    top: 80px; left: 6px;
+  }
+  .decorations .decoration-circleG{
+    width: 34px; height: auto;
+    top: 150px; left: 106px;  
+  }
+  .decorations .decoration-line{
+    width: 88px; height: auto;
+    top: 20px; left: 106px;
   }
   .decorations .decoration-ste {
     width: 88px; height: auto;
-    top: auto; bottom: 24px; left: 6px;
+    top: 300px; left: 6px;
   }
-
-  /* Right-side: star (top) + screwdriver (bottom) + small circle (middle) */
+  .decorations .decoration-curvePi{
+    width: 68px; height: auto;
+    top: 350px; left: 120px;    
+  }
+  .decorations .decoration-magnifyi{
+      width: 66px; height: auto;
+    top: 105px; right: 120px; left: auto;
+    }
   .decorations .decoration-starT {
-    width: 76px; height: auto;
-    top: 60px; right: 6px; left: auto;
+    width: 66px; height: auto;
+    top: 135px; right: 50px; left: auto;
+  }
+  .decorations .decoration-curveP{
+    width: 88px; height: auto;
+    top: 80px; right: 6px;
   }
   .decorations .decoration-screw {
     width: 88px; height: auto;
-    top: auto; bottom: 16px; right: 6px; left: auto;
+    top: 330px; bottom: 16px; right: 6px; left: auto;
   }
   .decorations .decoration-circleO {
     width: 36px; height: auto;
     top: 195px; right: 10px; left: auto;
+  }
+  .decorations .decoration-circleP{
+    width: 36px; height: auto;
+    top: 335px; right: 130px; left: auto;
+  }
+  .decorations .decoration-starB{
+    width: 76px; height: auto;
+    top: 275px; right: 50px; left: auto;
   }
 
   /* Sections */
@@ -833,7 +845,7 @@ body { overflow-x: hidden; }
 
   /* Careers carousel */
   .careers-section          { padding: 36px 0; }
-  .careers-carousel-wrapper { padding: 0 8px; gap: 6px; }
+  .careers-carousel-wrapper { padding: 0 20px; gap: 6px; }
   .careers-carousel-btn     { width: 34px; height: 34px; font-size: 18px; }
 
   /* FAQ */
@@ -845,11 +857,11 @@ body { overflow-x: hidden; }
   /* Buttons */
   .btn { font-size: 16px; padding: 10px 24px; }
 
-  /* Why / Quiz CTA image placeholders — make them shorter */
+  /* Why image*/
   .quiz-image-placeholder,
   .why-image-placeholder { height: 180px; }
 
-  /* Contact — center everything on phone */
+  /* Contact */
   .contact-title { text-align: center !important; }
   .contact-form-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; }
   .contact-form { max-width: 100%; width: 100%; }

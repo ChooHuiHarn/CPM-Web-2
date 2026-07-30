@@ -790,10 +790,40 @@ body { overflow-x: hidden; }
 
   .hero-title { font-size: 36px; }
 
-  /* Hide the absolutely-positioned decorations entirely on small phones —
-     they're purely decorative and have hardcoded pixel positions that
-     don't adapt below ~800 px */
-  .decorations { display: none; }
+  /* --- Decorations: keep them but scale to fit phone edges --- */
+
+  /* Hide center decorations that would sit behind/over the title text */
+  .decorations .decoration-circleG,
+  .decorations .decoration-line,
+  .decorations .decoration-magnifyi,
+  .decorations .decoration-curveP,
+  .decorations .decoration-curvePi,
+  .decorations .decoration-circleP,
+  .decorations .decoration-starB { display: none; }
+
+  /* Left-side: book (top) + stethoscope (bottom) */
+  .decorations .decoration-book {
+    width: 88px; height: auto;
+    top: 60px; left: 6px;
+  }
+  .decorations .decoration-ste {
+    width: 88px; height: auto;
+    top: auto; bottom: 24px; left: 6px;
+  }
+
+  /* Right-side: star (top) + screwdriver (bottom) + small circle (middle) */
+  .decorations .decoration-starT {
+    width: 76px; height: auto;
+    top: 60px; right: 6px; left: auto;
+  }
+  .decorations .decoration-screw {
+    width: 88px; height: auto;
+    top: auto; bottom: 16px; right: 6px; left: auto;
+  }
+  .decorations .decoration-circleO {
+    width: 36px; height: auto;
+    top: 195px; right: 10px; left: auto;
+  }
 
   /* Sections */
   h2.section-title   { font-size: 28px; }
@@ -818,6 +848,11 @@ body { overflow-x: hidden; }
   /* Why / Quiz CTA image placeholders — make them shorter */
   .quiz-image-placeholder,
   .why-image-placeholder { height: 180px; }
+
+  /* Contact — center everything on phone */
+  .contact-title { text-align: center !important; }
+  .contact-form-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .contact-form { max-width: 100%; width: 100%; }
 }
 
 @media (min-width: 1700px) {

@@ -536,6 +536,10 @@ Responsive
 
   /* Related jobs heading */
   .related-section h2 { font-size: 26px; }
+
+  .job-card {
+  flex: 0 0 270px;
+  }
 }
 
 @media (max-width: 1000px) {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Career Information</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Modak&family=Ultra&display=swap" rel="stylesheet">
@@ -15,10 +16,6 @@
   </head>
 
   <body>
-    <!-- ===========================
-Navigation
-============================ -->
-
     <nav>
       <ul class="sidebar">
         <li onclick="hideSidebar()">
@@ -51,9 +48,7 @@ Navigation
       </ul>
     </nav>
 
-    <!-- ===========================
-Hero
-============================ -->
+    <!-- Hero -->
 
     <header class="hero">
       <div class="hero-background"></div>
@@ -61,18 +56,14 @@ Hero
       <img id="job-image" class="hero-image" src="" alt="Career Image">
     </header>
 
-    <!-- ===========================
-Main
-============================ -->
+    <!-- Main -->
 
     <main class="container">
-      <!-- Loading overlay — shown while API data is being fetched -->
       <div id="page-loader">
         <div class="loader-spinner"></div>
         <p>Loading career info…</p>
       </div>
-      <!-- Job Title -->
-
+      
       <section class="job-heading">
         <h1 id="job-title">
           Accountant
@@ -83,11 +74,8 @@ Main
         </p>
       </section>
 
-      <!-- ======================= -->
-
       <section class="info-grid">
-        <!-- Personality -->
-
+      
         <div class="card">
           <h2>Does this job match me?</h2>
 
@@ -96,11 +84,8 @@ Main
           </p>
 
           <div id="personality-container">
-            <!-- JS inserts personalities -->
           </div>
         </div>
-
-        <!-- Salary -->
 
         <div class="card">
           <h2>Salary Expectation</h2>
@@ -134,19 +119,14 @@ Main
           </small>
         </div>
 
-        <!-- Pathway -->
-
         <div class="card">
           <h2>Academic Pathway</h2>
 
           <p>One possible route into this career.</p>
 
           <div id="pathway">
-            <!-- JS -->
-          </div>
+            </div>
         </div>
-
-        <!-- Schools -->
 
         <div class="card">
           <h2>Suggested Schools</h2>
@@ -156,7 +136,6 @@ Main
           <ul id="school-list"></ul>
         </div>
 
-        <!-- Start Now -->
 
         <div class="card wide">
           <h2>Start Now</h2>
@@ -165,9 +144,7 @@ Main
         </div>
       </section>
 
-      <!-- =======================
-Quiz
-======================= -->
+      <!-- Quiz -->
 
       <section class="quiz-card">
         <h2>Test Your Job Knowledge</h2>
@@ -183,7 +160,6 @@ Quiz
         <h3 id="quiz-question"></h3>
 
         <div id="quiz-options">
-          <!-- JS -->
         </div>
 
         <button id="quiz-next">
@@ -191,9 +167,7 @@ Quiz
         </button>
       </section>
 
-      <!-- =======================
-Related Jobs
-======================= -->
+      <!-- Other Jobsssss -->
 
       <section class="related-section">
         <h2>
@@ -204,17 +178,14 @@ Related Jobs
           <button id="previous-related" class="carousel-btn carousel-btn--prev" aria-label="Previous">&#8592;</button>
 
           <div id="related-jobs">
-            <!-- JS inserts cards -->
-          </div>
+            </div>
 
           <button id="next-related" class="carousel-btn carousel-btn--next" aria-label="Next">&#8594;</button>
         </div>
       </section>
     </main>
 
-    <!-- ===========================
-Template for Related Jobs
-============================ -->
+    <!--6up 5oh -->
 
     <template id="related-card-template">
       <div class="related-card">

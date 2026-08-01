@@ -46,10 +46,6 @@ body {
     linear-gradient(90deg, var(--grid) 0.1em, transparent 0.1em);
   background-size: 2em 2em;
 }
-/*=========================
-Container
-==========================*/
-
 .container {
   width: min(1200px, 95%);
   margin: auto;

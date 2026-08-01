@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobs</title>
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <title>Jobs — Cureer</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Modak&family=Ultra&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
   </head>
 
   <body>
+    <!-- Nav -->
     <nav>
       <ul class="sidebar">
         <li onclick="hideSidebar()">
@@ -69,9 +70,9 @@
       </div>
     </div>
 
-    <!-- Jobs -->
+    <!-- Jobs Grid -->
     <main class="jobs-container">
-      <!-- Load -->
+      <!-- Loading -->
       <div id="jobs-loader" class="jobs-loader">
         <div class="loader-spinner"></div>
         <p>Loading careers…</p>
@@ -79,10 +80,12 @@
 
       <!-- No results -->
       <p id="no-results" class="no-results hidden">No careers match your search.</p>
+
+      <!-- Grid -->
       <div id="jobs-grid" class="jobs-grid"></div>
     </main>
 
-    <!-- Card Temp -->
+    <!-- Card template -->
     <template id="job-card-template">
       <div class="jb-card">
         <div class="jb-card-image">

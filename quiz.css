@@ -160,35 +160,26 @@ body {
 .progress-bar {
   width: 100%;
   height: 12px;
-
   background: #d9e8ff;
-
   border-radius: 20px;
-
   overflow: hidden;
 }
 
 #progress {
   width: 0%;
-
   height: 100%;
-
   background: #6da7ff;
-
   transition: 0.3s;
 }
 
 #progress-text {
   margin-top: 10px;
-
   text-align: right;
-
   color: #6d7aa8;
 }
 
 .question-container {
   text-align: center;
-
   margin-bottom: 35px;
 }
 
@@ -201,9 +192,7 @@ body {
 
 .answers {
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 20px;
 }
 
@@ -228,9 +217,7 @@ body {
 
 .answer-btn.selected {
   background: #6da7ff;
-
   color: white;
-
   border-color: #6da7ff;
 }
 
@@ -550,7 +537,6 @@ body {
 
   .learn-more-btn {
     align-self: flex-start;
-
     margin-top: 15px;
   }
 }

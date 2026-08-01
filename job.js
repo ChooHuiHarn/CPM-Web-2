@@ -1,22 +1,8 @@
-/*==================================================
-        Job Page
-        Part 1
-==================================================*/
 
-/*------------------------------------
-Google Apps Script URL
-------------------------------------*/
 
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxQBx4JvjiaqWRjl_Uq86z-kfxSgsB4wLbRgEZOonNf6yczHxkBlSA50Zx_1lqpMKHt/exec";
 
-/*------------------------------------
-Personality Descriptions (local)
-These are used in the "Does this job
-match me?" section so they always
-load instantly, without depending on
-the API returning description fields.
-------------------------------------*/
 
 const descriptions = {
   R: "You enjoy practical, hands-on activities and solving real-world problems.",
@@ -27,29 +13,12 @@ const descriptions = {
   C: "You enjoy organising, planning, and working with structure.",
 };
 
-/*------------------------------------
-Read Job ID
-Example:
-job.html#accountant
-------------------------------------*/
-
-// Hash is never sent to the server or rewritten by proxies,
-// so it survives static-file hosting without any query-string issues.
-// jobID is read dynamically in loadJob() so hash changes work
-
-/*------------------------------------
-HTML Elements
-------------------------------------*/
-
-// FIX: was "hero-image" — the <img> in job.html is id="job-image"
 const heroImage = document.getElementById("job-image");
 
 const jobTitle = document.getElementById("job-title");
 
 const jobDescription = document.getElementById("job-description");
 
-// FIX: job.html doesn't have individual personality-1/2 elements,
-// just one container that JS is meant to fill in.
 const personalityContainer = document.getElementById(
   "personality-container",
 );
@@ -58,24 +27,15 @@ const salaryStart = document.getElementById("salary-start");
 
 const salaryEnd = document.getElementById("salary-end");
 
-// FIX: was "career-pathway" — the container div in job.html is id="pathway"
 const pathway = document.getElementById("pathway");
 
-// FIX: was "schools-list" — the <ul> in job.html is id="school-list"
 const schoolsList = document.getElementById("school-list");
 
 const startNow = document.getElementById("start-now");
 
-/*------------------------------------
-Load Job
-------------------------------------*/
 
 window.addEventListener("DOMContentLoaded", loadJob);
 window.addEventListener("hashchange", loadJob);
-
-/*------------------------------------
-Fetch Job Data
-------------------------------------*/
 
 const pageLoader = document.getElementById("page-loader");
 
@@ -86,7 +46,6 @@ function hideLoader() {
 async function loadJob() {
   const jobID = window.location.hash.slice(1) || null;
 
-  // Scroll to top when navigating to a new job
   window.scrollTo({ top: 0, behavior: "smooth" });
 
   if (!jobID) {
@@ -123,12 +82,8 @@ async function loadJob() {
   }
 }
 
-/*------------------------------------
-Display Job
-------------------------------------*/
 
 function displayJob(data) {
-  /* Banner */
 
   heroImage.src = data.image;
 
@@ -140,10 +95,6 @@ function displayJob(data) {
 
   /* Personality */
 
-  // FIX: build the two personality entries into the single
-  // container instead of targeting elements that don't exist.
-  // Use local descriptions so they always show — the API does
-  // not return primaryDescription / secondaryDescription fields.
   personalityContainer.innerHTML = `
     <div class="personality-tag">
       <h3>${personalityName(data.primary)}</h3>
@@ -187,18 +138,12 @@ function displayJob(data) {
 
   /* Job Knowledge Quiz */
 
-  // FIX: this was never called, so the quiz section stayed empty.
   loadQuiz(data.quiz);
 
   /* Related Jobs */
-
-  // FIX: this was never called either.
   loadRelatedJobs(data.relatedJobs);
 }
 
-/*------------------------------------
-Convert Personality Letter
-------------------------------------*/
 
 function personalityName(letter) {
   switch (letter) {
@@ -225,21 +170,10 @@ function personalityName(letter) {
   }
 }
 
-/*------------------------------------
-Create Pathway
-Example:
-
-SPM
-↓
-Degree
-↓
-Master
-------------------------------------*/
 
 function createPathway(path) {
   if (!path) return "<p>Pathway information not available.</p>";
 
-  // FIX: API returns → (Unicode arrow U+2192), not > (ASCII)
   const items = path.split("→");
 
   let html = "";
@@ -258,16 +192,6 @@ function createPathway(path) {
   return html;
 }
 
-/*==================================================
-        Job Page
-        Part 2
-        Job Knowledge Quiz
-==================================================*/
-
-/*------------------------------------
-Quiz Elements
-------------------------------------*/
-
 const quizQuestion = document.getElementById("quiz-question");
 
 const quizOptions = document.getElementById("quiz-options");
@@ -278,9 +202,7 @@ const quizProgressFill = document.getElementById("quiz-progress-fill");
 
 const quizNext = document.getElementById("quiz-next");
 
-/*------------------------------------
-Quiz Variables
-------------------------------------*/
+
 
 let quizData = [];
 
@@ -290,9 +212,6 @@ let selectedAnswer = null;
 
 let score = 0;
 
-/*------------------------------------
-Start Quiz
-------------------------------------*/
 
 function loadQuiz(questions) {
   quizData = questions;
@@ -320,9 +239,6 @@ function loadQuiz(questions) {
   showQuizQuestion();
 }
 
-/*------------------------------------
-Display Question
-------------------------------------*/
 
 function showQuizQuestion() {
   selectedAnswer = null;
@@ -367,9 +283,6 @@ function showQuizQuestion() {
   updateQuizProgress();
 }
 
-/*------------------------------------
-Progress Bar
-------------------------------------*/
 
 function updateQuizProgress() {
   quizProgress.textContent = `Question ${currentQuiz + 1} / ${quizData.length}`;
@@ -377,10 +290,6 @@ function updateQuizProgress() {
   quizProgressFill.style.width = ((currentQuiz + 1) / quizData.length) * 100 +
     "%";
 }
-
-/*------------------------------------
-Next Button
-------------------------------------*/
 
 quizNext.addEventListener("click", () => {
   if (selectedAnswer === null) {
@@ -405,9 +314,6 @@ quizNext.addEventListener("click", () => {
   }
 });
 
-/*------------------------------------
-Quiz Finished
-------------------------------------*/
 
 function finishQuiz() {
   quizQuestion.textContent = `You scored ${score} / ${quizData.length}!`;
@@ -418,7 +324,6 @@ function finishQuiz() {
 
   quizProgressFill.style.width = "100%";
 
-  /* Hide the Next button — only Try Again should be visible */
   quizNext.style.display = "none";
 
   const button = document.createElement("button");
@@ -433,21 +338,9 @@ function finishQuiz() {
 
   quizOptions.appendChild(button);
 }
-/*==================================================
-        Job Page
-        Part 3
-        Related Jobs
-==================================================*/
-
-/*------------------------------------
-HTML Elements
-------------------------------------*/
 
 const relatedJobsContainer = document.getElementById("related-jobs");
 
-/*------------------------------------
-Load Related Jobs
-------------------------------------*/
 
 function loadRelatedJobs(jobs) {
   relatedJobsContainer.innerHTML = "";
@@ -465,9 +358,7 @@ function loadRelatedJobs(jobs) {
   });
 }
 
-/*------------------------------------
-Create Card
-------------------------------------*/
+
 
 function createRelatedCard(job) {
   const card = document.createElement("div");
@@ -508,15 +399,11 @@ function createRelatedCard(job) {
   return card;
 }
 
-/*------------------------------------
-Carousel Arrows
-------------------------------------*/
-
 const previousRelated = document.getElementById("previous-related");
 
 const nextRelated = document.getElementById("next-related");
 
-const CARD_SCROLL = 320; /* card width (300px) + gap (20px) */
+const CARD_SCROLL = 320; 
 
 if (previousRelated) {
   previousRelated.addEventListener("click", () => {

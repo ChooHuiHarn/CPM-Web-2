@@ -1,6 +1,3 @@
-// =====================
-// Careers Carousel
-// =====================
 (function () {
   const CAREERS_API =
     "https://script.google.com/macros/s/AKfycbxQBx4JvjiaqWRjl_Uq86z-kfxSgsB4wLbRgEZOonNf6yczHxkBlSA50Zx_1lqpMKHt/exec";
@@ -18,9 +15,9 @@
   const prevBtn  = document.getElementById("careers-prev");
   const nextBtn  = document.getElementById("careers-next");
 
-  if (!carousel) return; // not on home page
+  if (!carousel) return; 
 
-  const CARD_W = 260; // card width + gap
+  const CARD_W = 260; 
 
   if (prevBtn) prevBtn.addEventListener("click", () => carousel.scrollBy({ left: -CARD_W * 3, behavior: "smooth" }));
   if (nextBtn) nextBtn.addEventListener("click", () => carousel.scrollBy({ left:  CARD_W * 3, behavior: "smooth" }));
@@ -49,7 +46,6 @@
   }
 
   function buildCard(job) {
-    // Results API returns `category` (e.g. "R"); job detail API returns `primary`
     const type = job.primary || job.category || "";
     const badge = BADGE[type] || { cls: "badge-blue", label: type };
     const salary = (job.salaryStart && job.salaryEnd)
@@ -83,9 +79,7 @@
     });
 })();
 
-// =====================
-// FAQ Modal
-// =====================
+
 document.querySelectorAll(".faq-item").forEach((btn) => {
   btn.addEventListener("click", () => {
     document.getElementById("faqModalAnswer").textContent = btn.dataset.answer;
@@ -112,9 +106,6 @@ function closeFaqModal() {
   overlay.setAttribute("aria-hidden", "true");
 }
 
-// =====================
-// Hero Animation
-// =====================
 window.addEventListener("load", () => {
   const hero = document.querySelector(".hero-section");
   if (!hero) return;
@@ -139,7 +130,7 @@ window.addEventListener("load", () => {
     }
   );
 
-  decorations.forEach((el, i) => {
+  decorations.forEach((el, i) =>{
     const r = el.getBoundingClientRect();
 
     const dx = heroCenterX - (r.left + r.width / 2);
@@ -205,7 +196,7 @@ window.addEventListener("load", () => {
       });
     });
 
-    hero.addEventListener("mouseleave", () => {
+    hero.addEventListener("mouseleave", () =>{
       decorations.forEach((el) => {
         el.style.transform = "";
       });
@@ -213,9 +204,6 @@ window.addEventListener("load", () => {
   }, totalAnimMs);
 });
 
-// =====================
-// Contact Form (Web3Forms)
-// =====================
 const contactForm = document.querySelector(".contact-form");
 
 if (contactForm) {
@@ -237,7 +225,7 @@ if (contactForm) {
     }, 5000);
   }
 
-  contactForm.addEventListener("submit", async (e) => {
+  contactForm.addEventListener("submit", async (e)=> {
     e.preventDefault();
 
     const name = document.getElementById("contactName").value.trim();
@@ -269,7 +257,7 @@ if (contactForm) {
     };
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response= await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

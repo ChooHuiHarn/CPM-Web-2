@@ -44,9 +44,9 @@ body {
   padding-top: 76px;
 
   background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(var(--grid) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, var(--grid) 0.1em, transparent 0.1em);
+  background-size: 2em 2em;
 
   display: flex;
   justify-content: center;

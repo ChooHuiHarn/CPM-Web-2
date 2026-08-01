@@ -1,22 +1,6 @@
-/*====================================================
-    Career Quiz
-    Part 1
-=====================================================*/
 
-/*-------------------------------------
-Google Apps Script URL
-(Change this later)
--------------------------------------*/
-
-// FIX: pointed at the new consolidated Apps Script (the same one
-// job.html/job.js use) instead of the old standalone deployment,
-// so there's only one backend to maintain.
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxQBx4JvjiaqWRjl_Uq86z-kfxSgsB4wLbRgEZOonNf6yczHxkBlSA50Zx_1lqpMKHt/exec";
-
-/*-------------------------------------
-Quiz Questions
--------------------------------------*/
 
 const quiz = [
   {
@@ -104,9 +88,6 @@ const quiz = [
   },
 ];
 
-/*-------------------------------------
-Personality Descriptions
--------------------------------------*/
 
 const descriptions = {
   R: "You enjoy practical, hands-on activities and solving real-world problems.",
@@ -122,9 +103,6 @@ const descriptions = {
   C: "You enjoy organising, planning, and working with structure.",
 };
 
-/*-------------------------------------
-Score Object
--------------------------------------*/
 
 let scores = {
   R: 0,
@@ -135,16 +113,10 @@ let scores = {
   C: 0,
 };
 
-/*-------------------------------------
-Variables
--------------------------------------*/
 
 let currentQuestion = 0;
 let selectedAnswer = null;
 
-/*-------------------------------------
-HTML Elements
--------------------------------------*/
 
 const landingPage = document.getElementById("landing-page");
 const quizPage = document.getElementById("quiz-page");
@@ -172,9 +144,6 @@ const topMatches = document.getElementById("top-matches");
 
 const otherJobsList = document.getElementById("other-jobs-list");
 
-/*-------------------------------------
-Start Quiz
--------------------------------------*/
 
 startBtn.addEventListener("click", () => {
   landingPage.classList.remove("active");
@@ -183,9 +152,6 @@ startBtn.addEventListener("click", () => {
   loadQuestion();
 });
 
-/*-------------------------------------
-Load Question
--------------------------------------*/
 
 function loadQuestion() {
   selectedAnswer = null;
@@ -217,9 +183,7 @@ function loadQuestion() {
   updateProgress();
 }
 
-/*-------------------------------------
-Progress Bar
--------------------------------------*/
+
 
 function updateProgress() {
   const percentage = ((currentQuestion + 1) / quiz.length) * 100;
@@ -229,41 +193,26 @@ function updateProgress() {
   progressText.textContent = `Question ${currentQuestion + 1} / ${quiz.length}`;
 }
 
-/*====================================================
-    Career Quiz
-    Part 2
-=====================================================*/
 
-/*-------------------------------------
-Next Button
--------------------------------------*/
 
 nextBtn.addEventListener("click", () => {
-  // Make sure an answer is selected
   if (selectedAnswer === null) {
     alert("Please select an answer before continuing.");
 
     return;
   }
 
-  // Add point to selected personality
   scores[selectedAnswer]++;
 
-  // Next question
   currentQuestion++;
 
-  // More questions remaining
   if (currentQuestion < quiz.length) {
     loadQuestion();
-  } // Quiz finished
+
   else {
     showResults();
   }
 });
-
-/*-------------------------------------
-Show Results
--------------------------------------*/
 
 function showResults() {
   quizPage.classList.remove("active");
@@ -275,8 +224,7 @@ function showResults() {
   const primary = ranking[0][0];
   const secondary = ranking[1][0];
 
-  // Fill the personality panel instantly from local data —
-  // no network call needed for this part.
+
   primaryName.textContent = personalityNames(primary);
   secondaryName.textContent = personalityNames(secondary);
   primaryDescription.textContent = descriptions[primary];
@@ -286,10 +234,6 @@ function showResults() {
 
   loadCareerResults(primary, secondary);
 }
-
-/*-------------------------------------
-Convert Letter To Name
--------------------------------------*/
 
 function personalityNames(letter) {
   switch (letter) {
@@ -315,11 +259,6 @@ function personalityNames(letter) {
       return "";
   }
 }
-
-/*-------------------------------------
-Reset Quiz
--------------------------------------*/
-
 restartBtn.addEventListener("click", () => {
   localStorage.removeItem("careerResults");
 
@@ -339,9 +278,7 @@ restartBtn.addEventListener("click", () => {
   quizPage.classList.remove("active");
   landingPage.classList.add("active");
 });
-/*====================================================
-    Career Results
-=====================================================*/
+
 function renderResults(data) {
   primaryName.textContent = personalityNames(data.primary);
 
@@ -469,7 +406,6 @@ window.addEventListener("load", () => {
 });
 
 async function loadCareerResults(primary, secondary) {
-  // Show a spinner in the jobs panel while the API responds.
   topMatches.innerHTML = `
     <div class="results-loading">
       <div class="spinner"></div>

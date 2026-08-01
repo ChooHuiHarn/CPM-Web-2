@@ -1,38 +1,21 @@
-/*==================================================
-  Jobs Listing Page
-==================================================*/
 
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxQBx4JvjiaqWRjl_Uq86z-kfxSgsB4wLbRgEZOonNf6yczHxkBlSA50Zx_1lqpMKHt/exec";
 
-/* All 6 RIASEC personality types */
 const TYPES = ["R", "I", "A", "S", "E", "C"];
 
-/*--------------------------------------------------
-  Elements
---------------------------------------------------*/
 
 const jobsGrid    = document.getElementById("jobs-grid");
 const jobsLoader  = document.getElementById("jobs-loader");
 const noResults   = document.getElementById("no-results");
 const searchInput = document.getElementById("search-input");
 
-/*--------------------------------------------------
-  State
---------------------------------------------------*/
 
 let allJobs = [];
 
-/*--------------------------------------------------
-  Boot
---------------------------------------------------*/
 
 window.addEventListener("DOMContentLoaded", fetchAllJobs);
 
-/*--------------------------------------------------
-  Fetch all jobs by querying every personality type
-  in parallel, then deduplicate by id.
---------------------------------------------------*/
 
 async function fetchAllJobs() {
   try {
@@ -59,7 +42,6 @@ async function fetchAllJobs() {
       });
     });
 
-    /* Sort alphabetically by title */
     jobs.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
 
     allJobs = jobs;
@@ -71,9 +53,6 @@ async function fetchAllJobs() {
   }
 }
 
-/*--------------------------------------------------
-  Render
---------------------------------------------------*/
 
 const template = document.getElementById("job-card-template");
 
@@ -91,7 +70,6 @@ function renderGrid(jobs) {
     const clone = template.content.cloneNode(true);
     const card  = clone.querySelector(".jb-card");
 
-    /* Image — try img/<id>.png; hide if it 404s */
     const img = clone.querySelector(".jb-card-image img");
     if (job.image) {
       img.src = job.image;
@@ -121,9 +99,6 @@ function renderGrid(jobs) {
   });
 }
 
-/*--------------------------------------------------
-  Live search
---------------------------------------------------*/
 
 searchInput.addEventListener("input", () => {
   const q = searchInput.value.trim().toLowerCase();

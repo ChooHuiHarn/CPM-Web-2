@@ -169,8 +169,10 @@ Container
 }
 
 .card h2 {
-  margin-bottom: 12px;
-  font-size: 34px;
+  margin-bottom: 5px;
+  font-size: 32px;
+  font-weight: 100 !important;
+  font-family: "Ultra", serif !important;
 }
 
 .card h3 {
@@ -273,6 +275,8 @@ Container
 .quiz-card h2 {
   font-size: 30px;
   margin-bottom: 10px;
+  font-weight: 300 !important;
+  font-family: "Ultra", serif !important;
 }
 
 #quiz-progress {

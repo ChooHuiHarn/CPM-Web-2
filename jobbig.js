@@ -89,7 +89,6 @@ function renderGrid(jobs) {
       window.location.href = `job.html#${job.id}`;
     });
 
-    /* whole card is also clickable */
     card.addEventListener("click", (e) => {
       if (e.target.closest(".jb-learn-more")) return;
       window.location.href = `job.html#${job.id}`;

@@ -251,10 +251,8 @@ body {
 }
 
 @media (max-width: 600px) {
-  /* Search bar full-width feel */
   .search-wrapper { padding: 20px 12px 14px; }
 
-  /* Card text */
   .jb-card-title { font-size: 17px; }
   .jb-card-desc  { font-size: 14px; }
   .jb-card-image { height: 150px; }

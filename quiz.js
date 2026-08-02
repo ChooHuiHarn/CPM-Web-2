@@ -413,9 +413,18 @@ async function loadCareerResults(primary, secondary) {
   otherJobsList.innerHTML = "";
 
   try {
-    const response = await fetch(
-      `${API_URL}?action=results&primary=${primary}&secondary=${secondary}`,
-    );
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+    let response;
+    try {
+      response = await fetch(
+        `${API_URL}?action=results&primary=${primary}&secondary=${secondary}`,
+        { signal: controller.signal },
+      );
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     if (!response.ok) {
       throw new Error("Failed to fetch career data.");

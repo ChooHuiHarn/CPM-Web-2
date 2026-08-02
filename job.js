@@ -56,9 +56,18 @@ async function loadJob() {
   if (pageLoader) pageLoader.classList.remove("hidden");
 
   try {
-    const response = await fetch(
-      `${API_URL}?action=job&id=${jobID}`,
-    );
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+    let response;
+    try {
+      response = await fetch(
+        `${API_URL}?action=job&id=${jobID}`,
+        { signal: controller.signal },
+      );
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const text = await response.text();
@@ -113,9 +122,9 @@ function displayJob(data) {
 
   /* Salary */
 
-  salaryStart.textContent = data.salaryStart;
+  salaryStart.textContent = data.salaryStart || "—";
 
-  salaryEnd.textContent = data.salaryEnd;
+  salaryEnd.textContent = data.salaryEnd || "—";
 
   /* Pathway */
 
@@ -123,7 +132,7 @@ function displayJob(data) {
 
   /* Start Now */
 
-  startNow.textContent = data.startNow;
+  startNow.textContent = data.startNow || "Information not available.";
 
   /* Suggested Schools */
 

@@ -378,7 +378,7 @@ h2.section-title {
   margin-top: 4px;
 }
 
-/* Why Section */
+/* Why */
 .why-section {
   background-color: var(--light-blue);
   padding: 80px 0;
@@ -835,7 +835,7 @@ body { overflow-x: hidden; }
 
   .container { padding: 24px 16px; }
 
-  /* Careers carousel */
+  /* carousel */
   .careers-section          { padding: 36px 0; }
   .careers-carousel-wrapper { padding: 0 20px; gap: 6px; }
   .careers-carousel-btn     { width: 34px; height: 34px; font-size: 18px; }
@@ -849,7 +849,7 @@ body { overflow-x: hidden; }
   /* Buttons */
   .btn { font-size: 16px; padding: 10px 24px; }
 
-  /* Why image*/
+  /* Why img*/
   .quiz-image-placeholder,
   .why-image-placeholder { height: 180px; }
 

@@ -1,5 +1,3 @@
-
-
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxQBx4JvjiaqWRjl_Uq86z-kfxSgsB4wLbRgEZOonNf6yczHxkBlSA50Zx_1lqpMKHt/exec";
 
@@ -62,7 +60,14 @@ async function loadJob() {
       `${API_URL}?action=job&id=${jobID}`,
     );
 
-    const data = await response.json();
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const text = await response.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      throw new Error("Invalid response from server.");
+    }
 
     if (data.error) {
       hideLoader();
@@ -136,7 +141,7 @@ function displayJob(data) {
     schoolsList.innerHTML = "<li>No schools listed yet.</li>";
   }
 
-  /* Job Knowledge Quiz */
+  /* Quiz */
 
   loadQuiz(data.quiz);
 

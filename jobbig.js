@@ -22,7 +22,8 @@ async function fetchAllJobs() {
     const responses = await Promise.all(
       TYPES.map((t) =>
         fetch(`${API_URL}?action=results&primary=${t}&secondary=R`)
-          .then((r) => r.json())
+          .then((r) => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))
+          .catch(() => ({ topMatches: [], otherJobs: [] }))
       )
     );
 

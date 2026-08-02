@@ -26,7 +26,9 @@
     const TYPES = ["R", "I", "A", "S", "E", "C"];
     const responses = await Promise.all(
       TYPES.map((t) =>
-        fetch(`${CAREERS_API}?action=results&primary=${t}&secondary=R`).then((r) => r.json())
+        fetch(`${CAREERS_API}?action=results&primary=${t}&secondary=R`)
+          .then((r) => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))
+          .catch(() => ({ topMatches: [], otherJobs: [] }))
       )
     );
 

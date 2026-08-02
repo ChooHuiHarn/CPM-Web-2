@@ -97,7 +97,6 @@ body {
   height: 26px;
 }
 
-/* Container */
 
 .jobs-container {
   width: min(1200px, 95%);
@@ -152,7 +151,6 @@ body {
   display: none !important;
 }
 
-/* Grid */
 
 .jobs-grid {
   display: grid;

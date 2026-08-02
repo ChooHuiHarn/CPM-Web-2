@@ -208,8 +208,7 @@ nextBtn.addEventListener("click", () => {
 
   if (currentQuestion < quiz.length) {
     loadQuestion();
-
-  else {
+  } else {
     showResults();
   }
 });
